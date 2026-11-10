@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doe+ | Agendar Doação</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Container principal em duas colunas seguindo o padrão do index.html */
+  .agenda-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 48px 5vw 64px;
+    align-items: start;
+  }
+
+  @media (min-width: 980px) {
+    .agenda-layout {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  /* Estilo exclusivo do Banner de Incentivo Escuro */
+  .banner-incentivo {
+    background: #120e10; /* Fundo idêntico ao da imagem de referência */
+    color: #f3f4f8;
+    padding: 48px 4vw;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+    border: 1px solid #4a3d41;
+  }
+
+  .banner-sub {
+    font-size: .85rem;
+    letter-spacing: .2em;
+    color: var(--red);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .banner-titulo {
+    font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .banner-titulo span {
+    color: var(--red);
+  }
+
+  .banner-desc {
+    color: #b6bacb;
+    font-size: 1.05rem;
+    max-width: 28em;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .banner-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .bolsa-sangue-svg {
+    width: min(180px, 30vw);
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+  }
+
+  .logo-bolsa {
+    margin-top: 16px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  /* Atalho de acesso rápido posicionado logo acima do formulário */
+  .atalho-agendamentos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--red-l);
+    color: var(--red-d);
+    padding: 14px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    border: 1px solid var(--line);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .atalho-agendamentos:hover {
+    transform: translateY(-2px);
+    background: #fbcdd2;
+  }
+
+  .atalho-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--red-d) !important;
+    text-decoration: none !important;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <svg width="40" height="46" viewBox="0 0 24 24" fill="#c8202f"><path d="M12 1.5C9 6 5 9.8 5 14.2A7 7 0 0 0 19 14.2C19 9.8 15 6 12 1.5Z"/></svg>
+    <span><b>Doe</b><span class="logo-plus">+</span></span>
+  </a>
+  <nav aria-label="Navegação do doador">
+    <a href="agendamento.html" style="color: var(--red)">Novo Agendamento</a>
+    <!-- Adicionado no menu superior -->
+    <a href="meus-agendamentos.html">Seus Agendamentos</a>
+  </nav>
+  <a class="btn" href="login.html" style="background:transparent; color:var(--ink); border:1px solid var(--line)">Sair</a>
+</header>
+
+<main class="agenda-layout" id="inicio">
+  
+  <!-- COLUNA DA ESQUERDA: Banner de incentivo escuro com a Bolsa de Sangue -->
+  <div class="banner-incentivo">
+    <div class="banner-texto">
+      <span class="banner-sub">DOE+ · SOLIDARIEDADE</span>
+      <h1 class="banner-titulo">Uma pequena gota para você, <br><span>uma vida inteira para alguém.</span></h1>
+      <p class="banner-desc">Seu gesto simples pode transformar o amanhã de quem mais precisa. Finalize a escolha do seu horário ao lado.</p>
+    </div>
+    
+    <div class="banner-visual">
+      <svg class="bolsa-sangue-svg" viewBox="0 0 200 280" aria-hidden="true">
+        <path d="M100 210 v50 c-5 15 -25 10 -30 30" fill="none" stroke="#c8202f" stroke-width="12" stroke-linecap="round"/>
+        <rect x="30" y="10" width="140" height="200" rx="36" fill="#c8202f"/>
+        <rect x="80" y="0" width="40" height="12" rx="4" fill="#4a3d41"/>
+        <rect x="50" y="50" width="100" height="90" rx="12" fill="#ffffff"/>
+        <path d="M80 85 c-5 8 -10 12 -10 18 a10 10 0 0 0 20 0 c0-6 -5-10 -10-18 Z" fill="#c8202f"/>
+        <rect x="100" y="85" width="40" height="5" rx="2" fill="#d9dce5"/>
+        <rect x="100" y="98" width="40" height="5" rx="2" fill="#d9dce5"/>
+      </svg>
+      <span class="logo-bolsa"><b>Doe</b><span class="logo-plus">+</span></span>
+    </div>
+  </div>
+
+  <!-- COLUNA DA DIREITA: Formulário de Agendamento -->
+  <div class="form-container">
+    
+    <!-- NOVO: Opção "Seus Agendamentos" adicionada logo acima do card do formulário -->
+    <div class="atalho-agendamentos">
+      <a href="meus-agendamentos.html" class="atalho-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex: none;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+        <span>Você já possui um horário? <strong>Ver "Seus Agendamentos" ativos →</strong></span>
+      </a>
+    </div>
+
+    <section class="card" id="cadastro" aria-labelledby="form-title">
+      <h2 id="form-title"><svg viewBox="0 0 24 24" width="36" height="36" fill="#c8202f"><path d="M12 1.5C9 6 5 9.8 5 14.2A7 7 0 0 0 19 14.2C19 9.8 15 6 12 1.5Z"/></svg>Agendar Doação</h2>
+      <p>Escolha o melhor local, data e horário para realizar sua doação.</p>
+
+      <form id="agendaForm" novalidate>
+        <div class="field">
+          <label for="local">Selecione o Hemocentro <i>*</i></label>
+          <select id="local" required>
+            <option value="">Escolha uma unidade</option>
+            <option value="1">Hemocentro Central - Av. Paulista, 100</option>
+            <option value="2">Unidade Zona Sul - R. das Flores, 450</option>
+            <option value="3">Unidade Zona Leste - Av. Principal, 2200</option>
+          </select>
+          <div class="err">Selecione um local para doação.</div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="data">Data desejada <i>*</i></label>
+            <input id="data" type="date" required>
+            <div class="err">Selecione uma data válida.</div>
+          </div>
+          <div class="field">
+            <label for="horario">Horário <i>*</i></label>
+            <select id="horario" required>
+              <option value="">Selecione</option>
+              <option>08:00</option>
+              <option>09:00</option>
+              <option>10:00</option>
+              <option>11:00</option>
+              <option>13:00</option>
+              <option>14:00</option>
+              <option>15:00</option>
+            </select>
+            <div class="err">Selecione um horário.</div>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top: 8px;">
+          <label class="terms" for="recomenda" style="align-items: flex-start;">
+            <input id="recomenda" type="checkbox" style="width: 20px; height: 20px; accent-color: var(--red); margin-top: 2px;">
+            <span>Estou alimentado, dormi pelo menos 6h e não ingeri bebidas alcoólicas nas últimas 12h.</span>
+          </label>
+        </div>
+
+        <button class="btn" type="submit" style="width: 100%; height: 50px; margin-top: 10px;">Confirmar Agendamento</button>
+      </form>
+
+      <!-- Estado de Sucesso (Oculto inicialmente) -->
+      <div class="ok" id="agendaOk">
+        <svg viewBox="0 0 24 24" width="56" height="56"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 2.8C20 15.8 12 21 12 21Z"/></svg>
+        <h3>Agendamento Confirmado!</h3>
+        <p>Obrigado! Seu horário foi reservado. Guarde essa data e nos vemos lá.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <span></span>
+  <div>Doe+ · © 2026</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('agendaForm');
+  const okSection = document.getElementById('agendaOk');
+  const inputData = document.getElementById('data');
+
+  if (inputData) {
+    const hoje = new Date().toISOString().split('T')[0];
+    inputData.setAttribute('min', hoje);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valido = true;
+    
+    ['local', 'data', 'horario'].forEach(id => {
+      const el = document.getElementById(id);
+      const container = el.closest('.field');
+      if (el.value === '') { container.classList.add('invalid'); valido = false; } 
+      else { container.classList.remove('invalid'); }
+    });
+
+    if (!valido) return;
+
+    const selectLocal = document.getElementById('local');
+    const textoLocal = selectLocal.options[selectLocal.selectedIndex].text;
+
+    const doadores = JSON.parse(localStorage.getItem('doadores')) || [];
+    const nomeDoador = doadores.length > 0 ? doadores[0].nome : "Doador Anônimo";
+
+    const novoAgendamento = {
+      doador: nomeDoador,
+      local: textoLocal,
+      data: inputData.value.split('-').reverse().join('/'),
+      horario: document.getElementById('horario').value,
+      status: 'Confirmado'
+    };
+
+    const agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
+    agendamentos.unshift(novoAgendamento);
+    localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
+
+    form.style.display = 'none';
+    okSection.style.display = 'flex';
+    okSection.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+    
+    ['local', 'data', 'horario'].forEach(id => {
+      const el = document.getElementById(id);
+      const isOk = el.value !== '';
+      el.closest('.field').classList.toggle('bad', !isOk);
+      if(!isOk) all = false;
+    });
+
+    if(all) {
+      document.getElementById('agendaForm').style.display = 'none';
+      document.getElementById('agendaOk').classList.add('show');
+    }
+  });
+</<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // AÇÃO DO BOTÃO SAIR: Redireciona para a página de login
+  document.querySelector('header .btn[href="login.html"]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'login.html';
+  });
+
+  // ... (mantenha o restante do código do formulário de agendamento aqui para baixo) ...
+  const form = document.getElementById('agendaForm');
+  // ...
+>
+</body>
+</html>

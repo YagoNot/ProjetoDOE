@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doe+ | Login</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Container principal em duas colunas seguindo o padrão do projeto */
+  .login-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 48px 5vw 64px;
+    align-items: center;
+    min-height: 80vh;
+  }
+
+  @media (min-width: 980px) {
+    .login-layout {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  /* Estilo do Banner de Incentivo Escuro */
+  .banner-incentivo {
+    background: #120e10; /* Fundo idêntico ao da imagem de referência */
+    color: #f3f4f8;
+    padding: 48px 4vw;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+    border: 1px solid #4a3d41;
+  }
+
+  .banner-sub {
+    font-size: .85rem;
+    letter-spacing: .2em;
+    color: var(--red);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .banner-titulo {
+    font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -.03em;
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .banner-titulo span {
+    color: var(--red);
+  }
+
+  .banner-desc {
+    color: #b6bacb;
+    font-size: 1.05rem;
+    max-width: 28em;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .banner-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .bolsa-sangue-svg {
+    width: min(180px, 30vw);
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+  }
+
+  .logo-bolsa {
+    margin-top: 16px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <svg width="40" height="46" viewBox="0 0 24 24" fill="#c8202f"><path d="M12 1.5C9 6 5 9.8 5 14.2A7 7 0 0 0 19 14.2C19 9.8 15 6 12 1.5Z"/></svg>
+    <span><b>Doe</b><span class="logo-plus">+</span></span>
+  </a>
+  <a class="btn" href="index.html#cadastro">Criar Conta</a>
+</header>
+
+<main class="login-layout">
+  
+  <!-- COLUNA DA ESQUERDA: Banner de incentivo com a bolsa de sangue -->
+  <div class="banner-incentivo">
+    <div class="banner-texto">
+      <span class="banner-sub">DOE+ · CONEXÃO</span>
+      <h1 class="banner-titulo">O amor não tem tipo sanguíneo, <span>ele apenas flui.</span></h1>
+      <p class="banner-desc">Acesse sua conta ao lado para acompanhar seu histórico, verificar campanhas ou agendar seu próximo ato de solidariedade.</p>
+    </div>
+    
+    <div class="banner-visual">
+      <svg class="bolsa-sangue-svg" viewBox="0 0 200 280" aria-hidden="true">
+        <!-- Tubo inferior -->
+        <path d="M100 210 v50 c-5 15 -25 10 -30 30" fill="none" stroke="#c8202f" stroke-width="12" stroke-linecap="round"/>
+        <!-- Corpo principal da bolsa -->
+        <rect x="30" y="10" width="140" height="200" rx="36" fill="#c8202f"/>
+        <!-- Detalhe superior de pendurar -->
+        <rect x="80" y="0" width="40" height="12" rx="4" fill="#4a3d41"/>
+        <!-- Etiqueta Branca Central -->
+        <rect x="50" y="50" width="100" height="90" rx="12" fill="#ffffff"/>
+        <!-- Gota de sangue dentro da etiqueta -->
+        <path d="M80 85 c-5 8 -10 12 -10 18 a10 10 0 0 0 20 0 c0-6 -5-10 -10-18 Z" fill="#c8202f"/>
+        <!-- Linhas de texto simuladas na etiqueta -->
+        <rect x="100" y="85" width="40" height="5" rx="2" fill="#d9dce5"/>
+        <rect x="100" y="98" width="40" height="5" rx="2" fill="#d9dce5"/>
+      </svg>
+      <span class="logo-bolsa"><b>Doe</b><span class="logo-plus">+</span></span>
+    </div>
+  </div>
+
+  <!-- COLUNA DA DIREITA: Card de Login -->
+  <section class="card" style="align-self: center;">
+    <h2>Acessar sua conta</h2>
+    <p>Insira seus dados cadastrados para acessar o painel.</p>
+    
+    <form id="loginForm" novalidate>
+      <div class="field">
+        <label for="email">E-mail ou CPF</label>
+        <input id="email" placeholder="seu@email.com" required>
+        <div class="err">Por favor, insira suas credenciais.</div>
+      </div>
+      <div class="field">
+        <label for="senha">Senha</label>
+        <input id="senha" type="password" placeholder="••••••••" required>
+        <div class="err">A senha é obrigatória.</div>
+      </div>
+      <button class="btn" type="submit" style="width: 100%; height: 50px; margin-top: 10px;">Entrar</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <span></span>
+  <div>Doe+ · © 2026</div>
+</footer>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email');
+    const senha = document.getElementById('senha');
+    let ok = true;
+
+    if(!email.value.trim()) { email.closest('.field').classList.add('bad'); ok = false; }
+    else { email.closest('.field').classList.remove('bad'); }
+
+    if(!senha.value) { senha.closest('.field').classList.add('bad'); ok = false; }
+    else { senha.closest('.field').classList.remove('bad'); }
+
+    if(ok) {
+      if(email.value.includes('admin')) {
+        window.location.href = 'admin.html';
+      } else {
+        window.location.href = 'agendamento.html';
+      }
+    }
+  });
+</script>
+</body>
+</html>

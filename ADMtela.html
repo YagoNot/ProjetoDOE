@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doe+ | Painel Admin</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .admin-main { display: flex; flex-direction: column; gap: 32px; padding: 40px 5vw; }
+  .table-container { width: 100%; overflow-x: auto; background: var(--card); border-radius: 12px; border: 1px solid var(--line); margin-top: 12px; }
+  table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
+  th, td { padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  th { background: var(--red-l); color: var(--red-d); font-weight: 700; }
+  tr:last-child td { border-bottom: none; }
+  .badge { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; background: #e2e8f0; color: #4a5568; }
+  .badge.apoio { background: var(--red-l); color: var(--red-d); }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <svg width="40" height="46" viewBox="0 0 24 24" fill="#c8202f"><path d="M12 1.5C9 6 5 9.8 5 14.2A7 7 0 0 0 19 14.2C19 9.8 15 6 12 1.5Z"/></svg>
+    <span><b>Doe</b><span class="logo-plus">Painel Admin</span></span>
+  </a>
+  <a class="btn" href="login.html" style="background:transparent; color:var(--ink); border:1px solid var(--line)">Sair</a>
+</header>
+
+<main class="admin-main">
+  <section>
+    <h2>Doadores Cadastrados</h2>
+    <p>Lista de pessoas que se registraram no sistema Doe+.</p>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Tipo</th>
+            <th>Telefone</th>
+            <th>Cidade/UF</th>
+          </tr>
+        </thead>
+        <tbody id="listaDoadores">
+          <tr>
+            <td>Daniel Sato Safado</td>
+            <td>123.456.789-00</td>
+            <td><span class="badge apoio">O+</span></td>
+            <td>(11) 99888-7766</td>
+            <td>Diadema / SP</td>
+          </tr>
+          <tr>
+            <td>Enzo Chefe</td>
+            <td>987.654.321-11</td>
+            <td><span class="badge apoio">AB-</span></td>
+            <td>(11) 98765-4321</td>
+            <td>São Paulo / SP</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Agendamentos Confirmados</h2>
+    <p>Doações agendadas e confirmadas pelos usuários.</p>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Doador</th>
+            <th>Local / Hemocentro</th>
+            <th>Data</th>
+            <th>Horário</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="listaAgendamentos">
+          <tr>
+            <td>Carlos Henrique Silva</td>
+            <td>Hemocentro Central - Av. Paulista</td>
+            <td>12/11/2026</td>
+            <td>09:00</td>
+            <td><span class="badge" style="background:#def7ec; color:#03543f">Confirmado</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span></span>
+  <div>Doe+ · Painel de Controle Administrativo · © 2026</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Ação do Botão Sair
+  document.querySelector('header .btn[href="login.html"]')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'login.html';
+  });
+
+  const listaDoadores = document.getElementById('listaDoadores');
+  const listaAgendamentos = document.getElementById('listaAgendamentos');
+
+  // Renderiza tabela de doadores salvos
+  if (listaDoadores) {
+    const doadoresSalvos = JSON.parse(localStorage.getItem('doadores')) || [];
+    if (doadoresSalvos.length > 0) {
+      listaDoadores.innerHTML = '';
+      doadoresSalvos.forEach(d => {
+        const localidade = d.estado ? `${d.cidade} / ${d.estado.toUpperCase()}` : d.cidade;
+        listaDoadores.innerHTML += `
+          <tr>
+            <td><b>${d.nome}</b></td>
+            <td>${d.cpf}</td>
+            <td><span class="badge apoio">${d.tipo}</span></td>
+            <td>${d.tel}</td>
+            <td>${localidade}</td>
+          </tr>`;
+      });
+    }
+  }
+
+  // Renderiza tabela de agendamentos salvos
+  if (listaAgendamentos) {
+    const agendamentosSalvos = JSON.parse(localStorage.getItem('agendamentos')) || [];
+    if (agendamentosSalvos.length > 0) {
+      listaAgendamentos.innerHTML = '';
+      agendamentosSalvos.forEach(a => {
+        listaAgendamentos.innerHTML += `
+          <tr>
+            <td><b>${a.doador}</b></td>
+            <td>${a.local}</td>
+            <td>${a.data}</td>
+            <td>${a.horario}</td>
+            <td><span class="badge" style="background:#def7ec; color:#03543f">${a.status}</span></td>
+          </tr>`;
+      });
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doe+ | Cadastro de doadores</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="drop" viewBox="0 0 24 24"><path d="M12 1.5C9 6 5 9.8 5 14.2A7 7 0 0 0 19 14.2C19 9.8 15 6 12 1.5Z"/></symbol>
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11.2A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 2.8C20 15.8 12 21 12 21Z"/></symbol>
+</svg>
+
+<header>
+  <a class="logo" href="#inicio" aria-label="Doe+ — página inicial">
+    <svg width="40" height="46" viewBox="0 0 24 24" fill="#c8202f"><use href="#drop"/></svg>
+    <span><b>Doe</b><span class="logo-plus">+</span></span>
+  </a>
+  <nav aria-label="Principal">
+    <a href="#inicio">Início</a><a href="#sobre">Sobre</a><a href="#beneficios">Por que doar</a><a href="#cadastro">Cadastro</a>
+  </nav>
+  <a class="btn" href="#cadastro">Quero me cadastrar</a>
+</header>
+
+<main id="inicio">
+  <svg class="bag" viewBox="0 0 200 330" aria-hidden="true">
+    <path d="M60 330c-10-60 60-100 60-170" fill="none" stroke="#c8202f" stroke-width="10" stroke-linecap="round"/>
+    <rect x="12" y="10" width="170" height="230" rx="30" fill="#fff" stroke="#f0c6ca" stroke-width="4" opacity=".7"/>
+    <rect x="30" y="30" width="134" height="200" rx="22" fill="#d9232f"/>
+    <rect x="42" y="90" width="110" height="80" rx="6" fill="#fff"/>
+    <path d="M70 105c-9 12-14 17-14 25a14 14 0 0 0 28 0c0-8-5-13-14-25Z" fill="#c8202f"/>
+    <rect x="96" y="134" width="46" height="4" fill="#bbb"/><rect x="96" y="144" width="46" height="4" fill="#bbb"/>
+    <rect x="60" y="238" width="30" height="40" rx="4" fill="#e6a0a6"/>
+  </svg>
+
+  <!-- AJUSTE: Agrupando a coluna da esquerda para o Grid funcionar perfeitamente -->
+  <div class="hero-content">
+    <section class="hero" id="sobre">
+      <h2>DOE+ · DOAÇÃO DE SANGUE</h2>
+      <h1>Uma doação faz <span>diferença.</span></h1>
+      <p class="lead">Hospitais precisam de doações todos os dias. Cadastre seus dados e dê o primeiro passo para se tornar um doador.</p>
+    </section>
+
+    <section id="beneficios">
+      <ul class="perks">
+        <li><div class="ico"><svg viewBox="0 0 24 24"><use href="#heart"/></svg></div><h3>Salva vidas</h3><p>Uma doação pode beneficiar mais de uma pessoa.</p></li>
+        <li><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Zm-1.2 14-3.5-3.5 1.4-1.4 2.1 2.1 4.6-4.6 1.4 1.4-6 6Z"/></svg></div><h3>É seguro</h3><p>A equipe do hemocentro orienta você em cada etapa.</p></li>
+        <li><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><circle cx="5.5" cy="10" r="2.4"/><circle cx="18.5" cy="10" r="2.4"/><path d="M12 13c-3.3 0-6 1.8-6 4v2h12v-2c0-2.2-2.7-4-6-4ZM5.5 13.5C3.5 13.7 2 15 2 16.7V18h3v-1.3c0-1.2.5-2.2 1.4-3.2-.3 0-.6 0-.9 0ZM18.5 13.5c-.3 0-.6 0-.9 0 .9 1 1.4 2 1.4 3.200V18h3v-1.300c0-1.700-1.500-3-3.500-3.200Z"/></svg></div><h3>É rápido</h3><p>Separe um tempo para a triagem e a doação.</p></li>
+        <li><div class="ico"><svg viewBox="0 0 24 24"><use href="#drop"/></svg></div><h3>É simples</h3><p>O primeiro passo é fazer seu cadastro.</p></li>
+      </ul>
+    </section>
+
+    <div class="tag"><svg width="28" height="28" viewBox="0 0 24 24" fill="#c8202f"><use href="#heart"/></svg>Informação e solidariedade ajudam a salvar vidas.</div>
+  </div>
+
+  <!-- Coluna da Direita: Card de Cadastro -->
+  <section class="card" id="cadastro" aria-labelledby="form-title">
+    <h2 id="form-title"><svg viewBox="0 0 24 24"><use href="#drop"/></svg>Cadastro de doador</h2>
+    <p>Preencha os campos abaixo. Seus dados serão enviados para a equipe responsável pelo cadastro.</p>
+
+    <form id="f" novalidate>
+      <div class="field"><label for="nome">Nome completo <i>*</i></label><input id="nome" name="nome" autocomplete="name" placeholder="Digite seu nome completo" required><div class="err">Informe seu nome completo.</div></div>
+      <div class="row">
+        <div class="field"><label for="cpf">CPF <i>*</i></label><input id="cpf" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" required><div class="err">CPF inválido.</div></div>
+        <div class="field"><label for="nasc">Data de nascimento <i>*</i></label><input id="nasc" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" autocomplete="bday" required><div class="err">Use dd/mm/aaaa. É preciso ter entre 16 e 69 anos.</div></div>
+      </div>
+      <div class="field"><label for="email">E-mail <i>*</i></label><input id="email" type="email" autocomplete="email" placeholder="seu@email.com" required><div class="err">Informe um e-mail válido.</div></div>
+      <div class="row">
+        <div class="field"><label for="tel">Telefone <i>*</i></label><input id="tel" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(11) 99999-9999" maxlength="15" required><div class="err">Informe DDD e número.</div></div>
+        <div class="field"><label for="tipo">Tipo sanguíneo <small>(opcional)</small></label>
+          <select id="tipo"><option value="">Selecione</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="sexo">Sexo</label>
+          <select id="sexo"><option value="">Selecione</option><option>Feminino</option><option>Masculino</option><option>Outro</option></select></div>
+        <div class="field"><label for="cep">CEP</label><input id="cep" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000" maxlength="9"></div>
+      </div>
+      <div class="field"><label for="logradouro">Logradouro</label><input id="logradouro" autocomplete="address-line1" placeholder="Rua, avenida..."></div>
+      <div class="row">
+        <div class="field"><label for="numero">Número</label><input id="numero" placeholder="123" maxlength="10"></div>
+        <div class="field"><label for="bairro">Bairro</label><input id="bairro" placeholder="Bairro"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="cidade">Cidade</label><input id="cidade" autocomplete="address-level2" placeholder="Cidade"></div>
+        <div class="field"><label for="estado">Estado (UF)</label><input id="estado" autocomplete="address-level1" placeholder="SP" maxlength="2" style="text-transform:uppercase"></div>
+      </div>
+      <div class="field"><label for="obs">Observações <small>(opcional)</small></label><input id="obs" placeholder="Alguma informação adicional?"></div>
+      <div class="field" id="termsField">
+        <label class="terms" for="aceite"><input id="aceite" type="checkbox"><span>Li e concordo com os <a href="#">termos de uso</a> e a <a href="#">política de privacidade</a>.</span></label>
+        <div class="err">Aceite os termos para continuar.</div>
+      </div>
+      <p class="err" id="erroGeral" role="alert"></p>
+      <button class="btn" type="submit">Cadastrar</button>
+    </form>
+
+    <div class="ok" id="ok" role="status">
+      <svg viewBox="0 0 24 24"><use href="#heart"/></svg>
+      <h3>Cadastro enviado!</h3>
+      <p id="okMsg">Entraremos em contato para agendar sua doação.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span></span>
+  <div>Doe+ · Projeto de cadastro de doadores · © 2026</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('f');
+  const okSection = document.getElementById('ok');
+  const erroGeral = document.getElementById('erroGeral');
+
+  const campos = {
+    nome: document.getElementById('nome'),
+    cpf: document.getElementById('cpf'),
+    nasc: document.getElementById('nasc'),
+    email: document.getElementById('email'),
+    tel: document.getElementById('tel'),
+    cep: document.getElementById('cep'),
+    logradouro: document.getElementById('logradouro'),
+    bairro: document.getElementById('bairro'),
+    cidade: document.getElementById('cidade'),
+    estado: document.getElementById('estado'),
+    aceite: document.getElementById('aceite')
+  };
+
+  const aplicarMascara = (input, format) => {
+    let valor = input.value.replace(/\D/g, '');
+    let formatado = '';
+    let i = 0;
+    for (const char of format) {
+      if (i >= valor.length) break;
+      if (char === '#') { formatado += valor[i]; i++; } 
+      else { formatado += char; }
+    }
+    input.value = formatado;
+  };
+
+  campos.cpf.addEventListener('input', () => aplicarMascara(campos.cpf, '###.###.###-##'));
+  campos.nasc.addEventListener('input', () => aplicarMascara(campos.nasc, '##/##/####'));
+  campos.cep.addEventListener('input', () => aplicarMascara(campos.cep, '#####-###'));
+  campos.tel.addEventListener('input', () => {
+    let valor = campos.tel.value.replace(/\D/g, '');
+    aplicarMascara(campos.tel, valor.length <= 10 ? '(##) ####-####' : '(##) #####-####');
+  });
+
+  campos.cep.addEventListener('blur', async () => {
+    const cep = campos.cep.value.replace(/\D/g, '');
+    if (cep.length !== 8) return;
+    try {
+      const resposta = await fetch(`https://viacep.com.br{cep}/json/`);
+      const dados = await resposta.json();
+      if (!dados.erro) {
+        campos.logradouro.value = dados.logradouro || '';
+        campos.bairro.value = dados.bairro || '';
+        campos.cidade.value = dados.localidade || '';
+        campos.estado.value = dados.uf || '';
+        campos.cep.closest('.field')?.classList.remove('invalid');
+      } else {
+        campos.cep.closest('.field')?.classList.add('invalid');
+      }
+    } catch (e) { console.error(e); }
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const novoDoador = {
+      nome: campos.nome.value.trim(),
+      cpf: campos.cpf.value,
+      tipo: document.getElementById('tipo').value || 'N/I',
+      tel: campos.tel.value,
+      cidade: campos.cidade.value.trim() || 'Não informada',
+      estado: campos.estado.value.trim() || ''
+    };
+
+    const doadores = JSON.parse(localStorage.getItem('doadores')) || [];
+    doadores.unshift(novoDoador);
+    localStorage.setItem('doadores', JSON.stringify(doadores));
+
+    form.style.display = 'none';
+    okSection.style.display = 'flex';
+    okSection.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>
